@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <!-- POM Relationships -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.vmware.kubecon</groupId>
+    <artifactId>demo-service-plugins</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <relativePath>..</relativePath>
+  </parent>
+  <artifactId>hello-plugin</artifactId>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.jmeter</groupId>
+      <artifactId>ApacheJMeter_components</artifactId>
+      <version>${jmeter.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.jodd</groupId>
+          <artifactId>jodd-log</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.jmeter</groupId>
+      <artifactId>ApacheJMeter_core</artifactId>
+      <version>${jmeter.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <!-- ///////////////// -->
+
+  <!-- Build Settings -->
+
+  <packaging>jar</packaging>
+  <build>
+    <finalName>${project.artifactId}-${project.version}</finalName>
+    <plugins>
+      <!-- Sort by groupId and artifactId (alphabetical) -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>package-plugin-with-dependencies</id>
+            <phase>package</phase>
+            <configuration>
+              <finalName>${project.artifactId}-plugin-0.1.0-with-dependencies</finalName>
+              <attach>false</attach>
+              <appendAssemblyId>false</appendAssemblyId>
+              <archive>
+                <manifestEntries>
+                  <Plugin-Description>${project.description}</Plugin-Description>
+                  <Plugin-Version>${project.version}</Plugin-Version>
+                  <Plugin-MainClass>${basePackage}.hello</Plugin-MainClass>
+                  <Plugin-Requires>&gt;=0.1.0</Plugin-Requires>
+                </manifestEntries>
+              </archive>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <reporting />
+
+  <!-- ////////////// -->
+
+  <!-- Project Information -->
+
+  <name>Hello Plugin</name>
+  <description>Plugin that salutes</description>
+
+  <!-- /////////////////// -->
+
+  <!-- Build Environment » Maven Environment -->
+
+  <properties>
+    <jmeter.version>5.4.1</jmeter.version>
+  </properties>
+
+  <!-- /////////////////// -->
+
+</project>

@@ -1,0 +1,17 @@
+.DS_Store
+
+# IDE
+.idea
+*.iml
+
+# Java
+target
+.project
+.classpath
+.settings
+pom.xml.versionsBackup
+pom.xml.releaseBackup
+release.properties
+
+# Maven
+.m2
