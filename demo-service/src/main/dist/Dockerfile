@@ -1,4 +1,4 @@
-FROM local/maven:3.8.5-java17 as builder
+FROM local/maven:3.8.5-java16 as builder
 
 ARG JAR_FILE
 

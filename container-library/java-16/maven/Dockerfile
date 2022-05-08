@@ -1,4 +1,4 @@
-FROM bitnami/java:17.0.2-debian-10-r57
+FROM bitnami/java:16.0.2-debian-10-r82
 
 ARG MAVEN_VERSION=3.8.5
 
