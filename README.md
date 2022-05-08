@@ -7,7 +7,7 @@ Mitigating vulnerabilities in container images is, most of the time, a straight-
 
 This session walks you through mitigating critical vulnerabilities in popular container images like Java-based ones, from the obvious to the sneaky ones, and how to leverage layer explorer tools to narrow the search field for the latter. It is meant to be a hands-on session, first we will use Aqua’s [Trivy](https://github.com/aquasecurity/trivy) scanner to analyze an image generated for a Spring Boot app and then wagoodman's [Dive](https://github.com/wagoodman/dive) to explore in which layer we are introducing a version of a library with critical vulnerabilities, while Maven seems to tell us otherwise.
 
-Find the slides ❯ [here](https://static.sched.com/hosted_files/kccnceu2022/fb/KubeCon_EU_2022_Pablo_Galego.pdf) ❮
+Find the slides ❯ [here](https://static.sched.com/hosted_files/kccnceu2022/20/KubeCon_EU_2022_Pablo_Galego.pdf) ❮
 
 ### Requirements
 
