@@ -1,8 +1,5 @@
 FROM local/maven:3.8.5-java17 as builder
 
-ARG MVN_DP_MIRROR_URL
-ARG MVN_DP_USERNAME
-ARG MVN_DP_TOKEN
 ARG JAR_FILE
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
