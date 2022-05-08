@@ -4,3 +4,5 @@
 .idea
 *.iml
 
+# Trivy
+trivy-cache
