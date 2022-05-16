@@ -10,6 +10,7 @@ RUN tmp_file=$(mktemp)  \
 WORKDIR /
 COPY target/dist/get-plugins.sh .
 RUN chmod +x ./get-plugins.sh && PLUGINS_TARGET_DIR=/tmp/plugins ./get-plugins.sh
+RUN mkdir /tmp/checksums && (for i in /tmp/plugins/*.jar; do sha256sum "$i" ; done) >> /tmp/checksums/plugin-checksums
 
 COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
@@ -40,6 +41,7 @@ COPY --from=builder spring-boot-loader/ /app/
 COPY --from=builder snapshot-dependencies/ /app/
 COPY --from=builder application/ /app/
 COPY --from=builder /tmp/plugins/ /plugins/
+COPY --from=builder /tmp/checksums/plugin-checksums /plugins/
 
 EXPOSE 8080
 
